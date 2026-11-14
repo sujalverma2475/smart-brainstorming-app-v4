@@ -1,0 +1,202 @@
+/* ---------- Utilities ---------- */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- Brand ---------- */
+.brand {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em;
+  color: var(--ink); text-decoration: none; margin: 0;
+}
+.brand__mark {
+  width: 1.15rem; height: 1.15rem; border-radius: 0.3rem;
+  background: var(--accent); transform: rotate(-8deg);
+  box-shadow: 0.2rem 0.2rem 0 var(--accent-tint);
+}
+.brand--large { font-size: 1.25rem; margin-bottom: 2.5rem; }
+
+/* ---------- Room: the board ---------- */
+.room {
+  height: 100vh; width: 100vw; position: relative; overflow: hidden;
+  background-color: var(--board);
+  background-image: radial-gradient(var(--dot) 1.2px, transparent 1.4px);
+  background-size: 24px 24px;
+}
+
+.board-canvas { position: absolute; inset: 0; z-index: 0; cursor: crosshair; touch-action: none; }
+
+.topbar {
+  position: absolute; top: 0.75rem; left: 0.75rem; right: 0.75rem; z-index: 10;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem;
+  pointer-events: none; /* let the canvas receive drawing near the edges */
+}
+.topbar > * { pointer-events: auto; }
+
+.roombar {
+  display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 0.4rem 0.5rem 0.4rem 0.85rem; box-shadow: var(--shadow-float);
+}
+.roombar__code {
+  font-size: 0.85rem; font-weight: 600; color: var(--ink-soft);
+  background: var(--board); border-radius: 8px; padding: 0.2rem 0.55rem;
+  max-width: 10rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.chip-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem; height: 2.25rem;
+  padding: 0 0.8rem; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--surface); color: var(--ink); font-size: 0.9rem; font-weight: 600; cursor: pointer;
+}
+.chip-btn:hover { background: var(--board); }
+
+.presence {
+  display: flex; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 999px; padding: 0.3rem 0.5rem; box-shadow: var(--shadow-float);
+}
+.presence__avatar {
+  width: 2rem; height: 2rem; border-radius: 50%; margin-left: -0.45rem;
+  display: grid; place-items: center; font-size: 0.75rem; font-weight: 700; color: var(--ink);
+  border: 2px solid var(--surface);
+}
+.presence__avatar:first-child { margin-left: 0; }
+.presence__more { background: var(--board); color: var(--ink-soft); }
+
+.banner {
+  position: absolute; top: 4.5rem; left: 50%; transform: translateX(-50%); z-index: 20;
+  background: var(--ink); color: #fff; padding: 0.55rem 1rem; border-radius: 10px;
+  font-size: 0.9rem; box-shadow: var(--shadow-float); max-width: calc(100vw - 1.5rem);
+}
+
+.empty {
+  position: absolute; inset: 0; z-index: 0; display: grid; align-content: center; justify-items: center;
+  text-align: center; padding: 1rem; pointer-events: none;
+}
+.empty h2 { margin: 0 0 0.4rem; font-size: 1.6rem; letter-spacing: -0.02em; }
+.empty p { margin: 0; color: var(--ink-soft); max-width: 24rem; line-height: 1.45; }
+
+/* ---------- Dock ---------- */
+.dock {
+  position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); z-index: 10;
+  display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 0.25rem;
+  max-width: calc(100vw - 1rem); padding: 0.4rem;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+  box-shadow: var(--shadow-float);
+}
+.dock__tools, .dock__group { display: flex; align-items: center; gap: 0.25rem; flex-wrap: wrap; justify-content: center; }
+.dock__sep { width: 1px; height: 1.6rem; background: var(--line); margin: 0 0.35rem; }
+
+.dock__btn {
+  display: inline-flex; align-items: center; gap: 0.45rem; height: 2.5rem; padding: 0 0.85rem;
+  border: none; border-radius: 12px; background: transparent; color: var(--ink);
+  font-size: 0.95rem; font-weight: 600; cursor: pointer;
+}
+.dock__btn:hover { background: var(--board); }
+.dock__btn.is-active { background: var(--accent-tint); color: var(--accent-strong); }
+.dock__btn--icon { width: 2.5rem; padding: 0; justify-content: center; }
+.dock__btn--primary { background: var(--accent); color: #fff; }
+.dock__btn--primary:hover { background: var(--accent-strong); }
+.dock__btn--danger:hover { background: #fde8e9; color: var(--danger); }
+
+.swatch {
+  width: 1.5rem; height: 1.5rem; border-radius: 50%; border: 2px solid var(--surface);
+  box-shadow: 0 0 0 1px var(--line); cursor: pointer; padding: 0;
+}
+.swatch.is-selected { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent); }
+.swatch-custom { width: 1.75rem; height: 1.75rem; border: none; padding: 0; background: none; cursor: pointer; }
+.dock__size input { width: 5.5rem; accent-color: var(--accent); }
+
+/* ---------- Sticky notes ---------- */
+.sticky-note {
+  position: absolute; z-index: 1; width: 12rem; height: 12rem; transform-origin: center;
+  display: flex; flex-direction: column; border-radius: 6px 6px 10px 6px;
+  box-shadow: 0 1px 1px rgba(26, 34, 54, 0.12), 0 6px 14px rgba(26, 34, 54, 0.14);
+  /* transform transition = notes glide to snapped/tidied/remote positions; off while dragging */
+  transition: box-shadow 0.15s ease, scale 0.15s ease, transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: note-in 0.18s ease-out;
+}
+.sticky-note.is-dragging {
+  z-index: 6; scale: 1.04; transition: none;
+  box-shadow: 0 2px 2px rgba(26, 34, 54, 0.12), 0 18px 32px rgba(26, 34, 54, 0.22);
+}
+.sticky-note__bar { height: 1.9rem; display: flex; align-items: center; border-radius: 6px 6px 0 0; }
+.sticky-note__handle {
+  flex: 1; height: 100%; display: flex; align-items: center; padding-left: 0.65rem;
+  font-size: 0.78rem; font-weight: 700; color: rgba(26, 34, 54, 0.75);
+  cursor: grab; touch-action: none; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+}
+.is-dragging .sticky-note__handle { cursor: grabbing; }
+.sticky-note__delete {
+  display: grid; place-items: center; width: 1.9rem; height: 1.9rem; padding: 0; border: none;
+  background: transparent; color: rgba(26, 34, 54, 0.6); cursor: pointer; border-radius: 6px;
+  opacity: 0; transition: opacity 0.12s ease;
+}
+.sticky-note__delete svg { width: 14px; height: 14px; }
+.sticky-note:hover .sticky-note__delete,
+.sticky-note:focus-within .sticky-note__delete { opacity: 1; }
+.sticky-note__delete:hover { color: var(--danger); background: rgba(255, 255, 255, 0.5); }
+@media (hover: none) { .sticky-note__delete { opacity: 1; } }
+
+.sticky-note__text {
+  flex: 1; border: none; background: transparent; resize: none; outline: none;
+  padding: 0.6rem 0.75rem; font-family: var(--font-hand); font-size: 1.08rem; line-height: 1.35;
+  color: var(--ink);
+}
+.sticky-note__text::placeholder { color: rgba(26, 34, 54, 0.4); }
+
+@keyframes note-in { from { scale: 0.92; opacity: 0; } to { scale: 1; opacity: 1; } }
+
+/* ---------- Home ---------- */
+.home {
+  min-height: 100vh; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center; gap: 3rem; padding: clamp(1.5rem, 5vw, 4.5rem);
+  max-width: 1200px; margin: 0 auto;
+}
+.home__intro h1 {
+  margin: 0 0 1rem; font-size: clamp(2.5rem, 6vw, 4.25rem); font-weight: 800;
+  line-height: 1.02; letter-spacing: -0.035em;
+}
+.home__lede { margin: 0 0 2rem; max-width: 30rem; font-size: 1.15rem; line-height: 1.5; color: var(--ink-soft); }
+
+.btn-primary, .btn-secondary {
+  height: 3rem; padding: 0 1.4rem; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer;
+}
+.btn-primary { border: none; background: var(--accent); color: #fff; box-shadow: 0 6px 16px rgba(58, 82, 244, 0.3); }
+.btn-primary:hover { background: var(--accent-strong); }
+.btn-secondary { border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.btn-secondary:hover { background: var(--board); }
+
+.home__join { display: flex; gap: 0.5rem; margin-top: 1.25rem; max-width: 24rem; }
+.home__join input {
+  flex: 1; min-width: 0; height: 3rem; padding: 0 1rem; font-size: 1rem; color: var(--ink);
+  border: 1px solid var(--line); border-radius: 12px; background: var(--surface);
+}
+.home__error { color: var(--danger); margin: 0.75rem 0 0; font-size: 0.9rem; }
+
+.home__preview {
+  position: relative; aspect-ratio: 1 / 0.9; min-height: 20rem;
+  border: 1px solid var(--line); border-radius: 22px; overflow: hidden;
+  background-color: #f7f8fc; background-image: radial-gradient(var(--dot) 1.2px, transparent 1.4px);
+  background-size: 24px 24px;
+}
+.home__preview .sticky-note { width: 10rem; height: 8.5rem; animation: none; }
+.sticky-note--static .sticky-note__handle { cursor: default; }
+.sticky-note__text--static { margin: 0; flex: 1; }
+
+@media (max-width: 800px) {
+  .home { grid-template-columns: 1fr; gap: 2rem; }
+  .home__preview { min-height: 17rem; }
+  .brand--large { margin-bottom: 1.5rem; }
+}
+
+@media (max-width: 560px) {
+  .dock__btn:not(.dock__btn--icon) span { display: none; }
+  .dock__btn:not(.dock__btn--icon) { width: 2.5rem; padding: 0; justify-content: center; }
+  .roombar { padding-left: 0.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticky-note { animation: none; transition: none; }
+}

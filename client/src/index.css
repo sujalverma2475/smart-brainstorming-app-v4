@@ -1,0 +1,32 @@
+:root {
+  --board: #eef1f7;
+  --dot: #c9d0de;
+  --ink: #1a2236;
+  --ink-soft: #5b6479;
+  --accent: #3a52f4;
+  --accent-strong: #2c40d4;
+  --accent-tint: #e3e8fe;
+  --danger: #e5484d;
+  --surface: #ffffff;
+  --line: #dde2ee;
+  --shadow-float: 0 10px 30px rgba(26, 34, 54, 0.14), 0 2px 6px rgba(26, 34, 54, 0.08);
+  --font-display: 'Bricolage Grotesque', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-hand: 'Kalam', 'Comic Sans MS', cursive;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-display);
+  color: var(--ink);
+  background: var(--board);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button, input { font-family: inherit; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+code { font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace; }
