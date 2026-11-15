@@ -8,10 +8,10 @@ import './App.css';
 const ROOM_RE = /^[\w-]{1,32}$/;
 
 const SAMPLE_NOTES = [
-  { user: 'Asha', text: 'What if onboarding took two minutes?', x: '4%', y: '8%', tilt: -3 },
-  { user: 'Ben', text: 'Ask five users before we build anything', x: '48%', y: '2%', tilt: 2.5 },
-  { user: 'Mei', text: 'Ship the small version first', x: '12%', y: '50%', tilt: 1.5 },
-  { user: 'Dev', text: 'Vote on favourites at 4 pm', x: '54%', y: '46%', tilt: -2 },
+  { user: 'Sujal', text: 'Come on guys, apne ideas batao!', x: '4%', y: '8%', tilt: -3 },
+  { user: 'Manjeet', text: 'Ask five users before we build anything', x: '48%', y: '2%', tilt: 2.5 },
+  { user: 'Sumit', text: 'Pehle ek architecture bana lete hai', x: '12%', y: '50%', tilt: 1.5 },
+  { user: 'Nitisha', text: 'UI ko mat bhul jaana!!', x: '54%', y: '46%', tilt: -2 },
 ];
 
 const Home: React.FC = () => {
